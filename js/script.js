@@ -49,27 +49,18 @@ function agregarPersona() {
         const nombre = document.getElementById('input-nombre').value.trim();
         const edad = parseInt(document.getElementById('input-edad').value);
         const email = document.getElementById('input-email').value.trim();
-
-        // Crear objeto persona
         const persona = {
-            id: Date.now(), // ID único basado en timestamp
+            id: Date,
             nombre: nombre,
             edad: edad,
             email: email
         };
 
-        // Agregar al array
         personas.push(persona);
 
-        // Limpiar formulario
         document.getElementById('input-nombre').value = '';
         document.getElementById('input-edad').value = '';
         document.getElementById('input-email').value = '';
-        
-        // Limpiar mensajes de error
-        limpiarErrores();
-
-        // Actualizar lista
         actualizarLista();
 
         console.log('Persona agregada:', persona);
@@ -77,7 +68,6 @@ function agregarPersona() {
     }
 }
 
-// Función para eliminar persona
 function eliminarPersona(id) {
     if (confirm('¿Está seguro que desea eliminar esta persona?')) {
         personas = personas.filter(persona => persona.id !== id);
@@ -86,7 +76,6 @@ function eliminarPersona(id) {
     }
 }
 
-// Función para actualizar la lista
 function actualizarLista() {
     const tbody = document.getElementById('lista-nombres');
     
@@ -98,6 +87,7 @@ function actualizarLista() {
             const fila = document.createElement('tr');
             fila.innerHTML = `
                 <td><button class="btn-eliminar" onclick="eliminarPersona(${persona.id})">Eliminar</button></td>
+                
                 <td>${persona.nombre}</td>
                 <td>${persona.edad}</td>
                 <td>${persona.email}</td>
@@ -107,24 +97,8 @@ function actualizarLista() {
     }
 }
 
-// Función que se ejecuta al cargar la página
-function inicializar() {
-    console.log('Aplicación inicializada');
-    actualizarLista();
-}
-
-// Eventos adicionales para mejorar la experiencia del usuario
-document.addEventListener('DOMContentLoaded', function() {
-    // Agregar evento Enter en los campos del formulario
-    const inputs = ['input-nombre', 'input-edad', 'input-email'];
     
-    inputs.forEach(inputId => {
-        const input = document.getElementById(inputId);
-        if (input) {
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    agregarPersona();
-                }
+    
             });
         }
     });
